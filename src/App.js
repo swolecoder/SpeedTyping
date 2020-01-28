@@ -1,27 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-/**
- * Challenge: build the basic structure of our game
- * 
- * 1. <h1> title at the top
- * 2. <textarea> for the box to type in 
- *      (tip: React normalizes <textarea /> to be more like <input />, 
- *      so it can be used as a self-closing element and uses the `value` property
- *      to set its contents)
- * 3. <h4> ti display the amount of time remaining
- * 4. <button> to start the game
- * 5. Another <h1> to display the word count
- */
+import React, { useState, useEffect } from "react";
+import "./App.css";
 
 function App() {
+  const [text, setText] = useState("");
+  const [time, setTimeRemaning] = useState(5);
+
+  useEffect(() => {
+    if (time > 0) {
+      setTimeout(() => {
+        setTimeRemaning(prevTime => prevTime - 1);
+      }, 1000);
+    }
+  }, [time]);
+
+  function handleChange(e) {
+    const { value } = e.target;
+    setText(value);
+  }
+
+  function calculateWordCount(text) {
+    const wordsArr = text
+      .trim()
+      .split(" ")
+      .filter(d => d !== "");
+    return wordsArr.length;
+  }
+
   return (
-    <div >
-           <h1>How fast do you type?</h1>
-            <textarea />
-            <h4>Time reminaing: ???</h4>
-            <button>Start</button>
-            <h1>Word count: ???</h1>
+    <div>
+      <h1>How fast do you type?</h1>
+      <textarea onChange={handleChange} value={text} />
+      <h4>Time remaining: {time}</h4>
+      <button onClick={() => calculateWordCount(text)}>Start</button>
+      <h1>Word count: ???</h1>
     </div>
   );
 }
