@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./App.css";
 
 function App() {
@@ -8,6 +8,10 @@ function App() {
   const [time, setTimeRemaning] = useState(START_TIME);
   const [timerRunning, setTimerRunning] = useState(false);
   const [wordCount, setWordCount] = useState(0);
+
+  // ref to focus on element
+  const useRefFocusElement  = useRef();
+
 
   useEffect(() => {
     if (timerRunning && time > 0) {
@@ -33,6 +37,8 @@ function App() {
   }
 
   function startTimer() {
+    // move the focus from button to textbox
+    useRefFocusElement.current.focus();
     setTimerRunning(previosState => true);
     setTimeRemaning(START_TIME);
     setText("");
@@ -49,7 +55,7 @@ function App() {
   return (
     <div>
       <h1>How fast do you type?</h1>
-      <textarea onChange={handleChange} value={text} disabled={!timerRunning} />
+      <textarea onChange={handleChange} ref={useRefFocusElement} value={text} disabled={!timerRunning} />
       <h4>Time remaining: {time}</h4>
       <button onClick={startTimer} disabled={timerRunning}>Start</button>
       <h1>Word count: {wordCount}</h1>
