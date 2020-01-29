@@ -38,11 +38,13 @@ function App() {
 
   function startTimer() {
     // move the focus from button to textbox
-    useRefFocusElement.current.focus();
+
     setTimerRunning(previosState => true);
     setTimeRemaning(START_TIME);
     setText("");
     setWordCount(0);
+    useRefFocusElement.current.disabled = false
+    useRefFocusElement.current.focus();
   }
 
   function endGame() {
