@@ -46,3 +46,11 @@ textarea {
 textarea:disabled {
   background-color: #a5a2a2;
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 20px;
+  width: 100%;
+}
+ 

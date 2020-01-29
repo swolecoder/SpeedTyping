@@ -53,6 +53,7 @@ function App() {
       <h4>Time remaining: {time}</h4>
       <button onClick={startTimer} disabled={timerRunning}>Start</button>
       <h1>Word count: {wordCount}</h1>
+      <footer> Made by &hearts; Ashish Ranjan</footer>
     </div>
   );
 }
