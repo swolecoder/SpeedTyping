@@ -13,8 +13,7 @@ function App() {
         setTimeRemaning(prevTime => prevTime - 1);
       }, 1000);
     } else if (time === 0) {
-      setTimerRunning(false);
-
+      setTimerRunning(false)
       setWordCount(calculateWordCount(text));
     }
   }, [time, timerRunning]);
